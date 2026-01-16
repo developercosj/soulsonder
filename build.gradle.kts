@@ -1,3 +1,14 @@
+java {
+	toolchain {
+		languageVersion.set(JavaLanguageVersion.of(21))  // Java compile JVM target = 21
+	}
+}
+
+kotlin {
+	jvmToolchain(21)  // Kotlin compile JVM target = 21
+}
+
+
 plugins {
 	kotlin("jvm") version "2.2.21"
 	kotlin("plugin.spring") version "2.2.21"
@@ -26,6 +37,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.postgresql:postgresql:42.7.2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
