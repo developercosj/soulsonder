@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/soulsonder # docker 로 사용하고 있으며 같은 docker 에서 실행시에는 url 을 변경필요
-    username: soul
-    password: soulpass123!23
+    url: jdbc:postgresql://aws-1-ap-northeast-1.pooler.supabase.com:6543/postgres?sslmode=require
+    username: postgres.dkfdykagwxzfngdytgeu
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
