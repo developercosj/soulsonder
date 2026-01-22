@@ -1,11 +1,11 @@
 java {
 	toolchain {
-		languageVersion.set(JavaLanguageVersion.of(21))  // Java compile JVM target = 21
+		languageVersion.set(JavaLanguageVersion.of(24))  // Java compile JVM target = 21
 	}
 }
 
 kotlin {
-	jvmToolchain(21)  // Kotlin compile JVM target = 21
+	jvmToolchain(24)  // Kotlin compile JVM target = 21
 }
 
 
@@ -22,7 +22,7 @@ description = "soulsonder"
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(25)
+		languageVersion = JavaLanguageVersion.of(24)
 	}
 }
 
@@ -38,6 +38,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.postgresql:postgresql:42.7.2")
+	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5") // JSON 처리용
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
@@ -51,6 +54,10 @@ kotlin {
 	}
 }
 
-tasks.withType<Test> {
-	useJUnitPlatform()
+
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+	compilerOptions {
+		jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_24)
+	}
 }
