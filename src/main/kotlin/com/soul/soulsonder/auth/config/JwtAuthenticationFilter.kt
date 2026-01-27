@@ -23,18 +23,13 @@ class JwtAuthenticationFilter(
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             val token = authHeader.substring(7)
             if (jwtUtil.validateToken(token)) {
-                val username =  UsernamePasswordAuthenticationToken(token, authHeader)
-                val auth = UsernamePasswordAuthenticationToken(username, authHeader)
-                SecurityContextHolder.getContext().authentication = auth
-
-
+                val username = jwtUtil.extractUsername(token)
+                val auth = UsernamePasswordAuthenticationToken(username, null, emptyList())
+            SecurityContextHolder.getContext().authentication = auth
             }
-
-
         }
 
-
-
+        filterChain.doFilter(request, response)
     }
 
 
